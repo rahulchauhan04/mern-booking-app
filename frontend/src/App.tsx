@@ -5,9 +5,13 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout></Layout>} />
-        <Route path="/sign-in" element />
-        <Route path="" element />
+        <Route path="/" element={<Layout>
+          <p>Homepage</p>
+        </Layout>} />
+        <Route path="/search" element={<Layout>
+          <p>SearchPage</p>
+        </Layout>} />
+        <Route path="*" element />
       </Routes>
     </Router>
   )

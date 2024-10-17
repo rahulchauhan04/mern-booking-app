@@ -1,15 +1,10 @@
 import express, { Request, Response, NextFunction } from 'express';
 import User from '../models/user';
 import jwt from 'jsonwebtoken';
+import wrapAsync from '../middleware/wrapAsync';
 
 
 const router = express.Router();
-
-// Wrapper function to handle async errors
-const wrapAsync = (fn: Function) => (req: Request, res: Response, next: NextFunction) => {
-     Promise.resolve(fn(req, res, next)).catch(next);
-};
-
 
 //api/users/register
 router.post("/register", wrapAsync(async (req: Request, res: Response) => {

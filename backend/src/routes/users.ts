@@ -13,7 +13,7 @@ router.post("/register", [
      check("lastName", "Last name is required").isString(),
      check("email", "Email is required").isEmail(),
      check("password", "Password with 6 or more characters is required").isLength({ min: 6 }),
-], wrapAsync(async (req: Request, res: Response) => {
+     ], wrapAsync(async (req: Request, res: Response) => {
      // Validate request
      const errors = validationResult(req);
      if (!errors.isEmpty()) {

@@ -42,8 +42,9 @@ router.post("/register", [
           secure: process.env.NODE_ENV === "production",
           maxAge: 90 * 24 * 60 * 60 * 1000,
      });
+     return res.status(200).send({ message: "User registered OK" });
+     } 
 
-     return res.sendStatus(200);
-}));
+));
 
 export default router;

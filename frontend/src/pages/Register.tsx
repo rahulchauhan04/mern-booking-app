@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import * as apiClient from "../api-client"; // wildCard import
+import { useAppContext } from "../contexts/AppContext";
 
 // Define the structure of the form data using TypeScript types
 export type RegisterFormData = {
@@ -12,15 +13,17 @@ export type RegisterFormData = {
 };
 
 const Register = () => {
+     const { showToast } = useAppContext(); // Call the useAppContext hook to access the context
+
      // Initialize useForm hook to manage form state
      const { register, watch, handleSubmit, formState: { errors } } = useForm<RegisterFormData>();
 
      const mutation = useMutation(apiClient.register, {
           onSuccess: () => {
-               console.log("registration successful");
+               showToast({ message: "Registration Success!", type: "SUCCESS" });
           },
           onError: (error: Error) =>{
-               console.log(error.message);
+               showToast({ message: error.message, type: "ERROR" });
           }
      });
      // Define the function to handle form submission
